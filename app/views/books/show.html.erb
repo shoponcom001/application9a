@@ -1,7 +1,12 @@
+<%= render "users/user", user: @book.user %>
+
+<%= render "books/book", book: @book %>
+
 <div class="post-body">
   <p>Title:<%= @book.title %></p>
   <p>Opinion:<%= @book.body %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
+
+  <%= link_to "Edit", edit_book_path(@book) %>
+  <%= link_to "Destroy", book_path(@book1), method: :delete %>
+
 </div>
