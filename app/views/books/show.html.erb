@@ -1,12 +1,15 @@
-<%= render "users/user", user: @book.user %>
+<%= render "users/user", user: @book1.user %>
 
 <%= render "books/book", book: @book %>
 
 <div class="post-body">
+
+  <%= link_to @user.name, user_path(@user) %>
+  <p><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
   <p>Title:<%= @book.title %></p>
   <p>Opinion:<%= @book.body %></p>
 
-  <%= link_to "Edit", edit_book_path(@book) %>
+  <%= link_to "Edit", edit_book_path(@book1) %>
   <%= link_to "Destroy", book_path(@book1), method: :delete %>
 
 </div>
