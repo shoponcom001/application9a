@@ -1,9 +1,19 @@
+
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>eeors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <%= render "users/user", user: @user %>
 
 <%= render "books/book", book: @book %>
 
 <% @books.each do |book| %>
 <div>
+  <p><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
   <p>Title:<%= book.title %></p>
   <%= link_to book.title, book_path(book.id) %>
   <p>Opinion:<%= book.body %></p>

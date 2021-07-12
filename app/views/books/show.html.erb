@@ -1,3 +1,5 @@
+<%= flash[:notice] %>
+
 <%= render "users/user", user: @book1.user %>
 
 <%= render "books/book", book: @book %>
@@ -6,8 +8,8 @@
 
   <%= link_to @user.name, user_path(@user) %>
   <p><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
-  <p>Title:<%= @book.title %></p>
-  <p>Opinion:<%= @book.body %></p>
+  <p>Title:<%= @book1.title %></p>
+  <p>Opinion:<%= @book1.body %></p>
 
   <%= link_to "Edit", edit_book_path(@book1) %>
   <%= link_to "Destroy", book_path(@book1), method: :delete %>
