@@ -1,8 +1,8 @@
 class HomesController < ApplicationController
-  
+
   def top
   end
-  
-  def ab
+
+  def about
   end
 end

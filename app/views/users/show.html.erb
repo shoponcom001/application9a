@@ -1,9 +1,12 @@
 <%= flash[:notice] %>
 
+<div class="row">
+  <div class="col-md-3">
+    <%= render "users/user", user: @user %>
+    <%= render "books/book", book: @book %>
+  </div>
+</div>
 
-<%= render "users/user", user: @user %>
-
-<%= render "books/book", book: @book %>
 
 <% @books.each do |book| %>
 <div>
