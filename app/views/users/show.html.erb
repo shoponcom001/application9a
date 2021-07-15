@@ -1,21 +1,67 @@
-<%= flash[:notice] %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<div class="row">
-  <div class="col-md-3">
-    <%= render "users/user", user: @user %>
-    <%= render "books/book", book: @book %>
-  </div>
-</div>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
-<% @books.each do |book| %>
-<div>
-  <h1>Books</h1>
-  <%= link_to book_path(book.id) do %>
-     <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
-  <% end %>
-  <p>title:<%= link_to book.title, book_path(book.id) %></p>
-  <p>Opinion:<%= book.body %></p>
-</div>
-<% end %>
-
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <main>
+      <p id="notice"><%= flash[:notice] %></p>
+      <div class="container px-5 px-sm-0">
+        <div class="row">
+          <div class="col-md-3">
+            <%= render "users/user", user: @user %>
+            <%= render "books/book", book: @book %>
+          </div>
+        </div>
+          <div class="col-md-8 offset-md-1">
+            <h2>Books</h2>
+              <table class="table table-hover table-inverse">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Opinion</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+            <tbody>
+              <tr>
+                <% @books.each do |book| %>
+                  <td>
+                    <%= link_to book_path(book.id) do %>
+                      <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <p><%= link_to book.title, book_path(book.id) %></p>
+                  </td>
+                  <td>
+                    <p><%= book.body %></p>
+                  </td>
+                <% end %>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+     <footer>
+      <div class='container mt-5'>
+  	    <div class='row'>
+    	    <div class='mx-auto'>
+    		    <p>CopyRight Infratop.inc</p>
+    	    </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
