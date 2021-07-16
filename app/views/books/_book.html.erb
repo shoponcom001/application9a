@@ -4,15 +4,15 @@
     <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
   </head>
-  
+
   <body>
     <div>
       <div>
@@ -22,7 +22,7 @@
         <label for="book_title">Title</label>
           <%= f.text_field :title, class: "form-control" %>
         </div>
-        <div>
+        <div class="form-group">
         <label for="book_opinion">Opinion</label>
           <%= f.text_area :body, class: "form-control"%>
         </div>

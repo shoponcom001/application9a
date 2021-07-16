@@ -1,18 +1,59 @@
-<% if @user.errors.any? %>
-  <%= @user.errors.count %>eeors prohibited this obj from being saved:
-  <% @user.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<h2>User info</h2>
-<%= form_with model:@user, local:true do |f| %>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName"%>
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <label for="inputImage">ProfileImage</label>
-  <%= f.attachment_field :profile_image, placeholder:"プロフィール画像" %>
-  <label for="inputIntroduction">Introduction</label>
-  <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction"%>
-  <%= f.submit "Update User" %>
-<% end %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <main>
+      <% if @user.errors.any? %>
+        <%= @user.errors.count %>eeors prohibited this obj from being saved:
+        <% @user.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            <h2>User info</h2>
+            <%= form_with model:@user, local:true do |f| %>
+              <div class="form-group">
+              <label>Name</label>
+                <%= f.text_field :name, autofocus: true, id:"inputName", class: "form-control"%>
+              </div>
+              <div class="form-group">
+              <label>Image</label>
+                <%= f.attachment_field :profile_image, placeholder:"プロフィール画像",  class: "form-control-file user_image" %>
+              </div>
+              <div class="form-group">
+              <label>Introduction</label>
+                <%= f.text_area :introduction, autofocus: true, id:"inputIntroduction", class: "form-control"%>
+              </div>
+              <div class="form-group">
+                <%= f.submit "Update User", class: "btn btn-secondary"%>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </main>
+     <footer>
+      <div class='container mt-5'>
+  	    <div class='row'>
+    	    <div class='mx-auto'>
+    		    <p>CopyRight Infratop.inc</p>
+    	    </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
