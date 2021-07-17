@@ -1,17 +1,66 @@
-<%= flash[:notice] %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<%= render "users/user", user: @book1.user %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<%= render "books/book", book: @book %>
 
-<div class="post-body">
-
-  <%= link_to @user.name, user_path(@user) %>
-  <p><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %></p>
-  <p>Title:<%= @book1.title %></p>
-  <p>Opinion:<%= @book1.body %></p>
-
-  <%= link_to "Edit", edit_book_path(@book1) %>
-  <%= link_to "Destroy", book_path(@book1), method: :delete %>
-
-</div>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
+  </head>
+  
+  <body>
+    <main>
+      <p id="notice"></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <%= render "users/user", user: @book1.user %>
+            <%= render "books/book", book: @book %>
+          </div>
+        </div>
+          <div class="col-md-8 offset-md-1">
+            <h2>Book detail</h2>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td>
+                    <a>
+                      <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%> <br>
+                      <%= link_to @user.name, user_path(@user) %>
+                    </a>
+                  </td>
+                  <td>
+                    <%= link_to @book1.title, book_path(@book1)%>
+                  </td>
+                  <td>
+                    <%= @book1.body %>
+                  </td>
+                  <td>
+                    <%= link_to "Edit", edit_book_path(@book1), class: "btn btn-sm btn-success" %>
+                  </td>
+                  <td>
+                    <%= link_to "Destroy", book_path(@book1), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか？" %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </main>
+    <footer>
+      <div class='container mt-5'>
+  	    <div class='row'>
+    	    <div class='mx-auto'>
+    		    <p>CopyRight Infratop.inc</p>
+    	    </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+  
