@@ -16,7 +16,7 @@
   <body>
     <main>
       <% if @book.errors.any? %>
-        <%= @book.errors.count %>eeors prohibited this obj from being saved:
+        <%= @book.errors.count %>error prohibited this obj from being saved:
         <% @book.errors.full_messages.each do |message| %>
           <%= message %>
         <% end %>

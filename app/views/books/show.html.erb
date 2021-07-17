@@ -29,10 +29,10 @@
               <tbody>
                 <tr>
                   <td>
-                    <a>
-                      <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%> <br>
+                      <%= link_to user_path(@user) do %>
+                        <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%> <br>
+                      <% end %>  
                       <%= link_to @user.name, user_path(@user) %>
-                    </a>
                   </td>
                   <td>
                     <%= link_to @book1.title, book_path(@book1)%>
@@ -41,10 +41,14 @@
                     <%= @book1.body %>
                   </td>
                   <td>
-                    <%= link_to "Edit", edit_book_path(@book1), class: "btn btn-sm btn-success" %>
+                    <% if @user == current_user %>
+                      <%= link_to "Edit", edit_book_path(@book1), class: "btn btn-sm btn-success" %>
+                    <% end %>
                   </td>
                   <td>
-                    <%= link_to "Destroy", book_path(@book1), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか？" %>
+                    <% if @user == current_user %>
+                      <%= link_to "Destroy", book_path(@book1), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "本当に消しますか？" %>
+                    <% end %>
                   </td>
                 </tr>
               </tbody>
