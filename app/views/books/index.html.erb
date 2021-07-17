@@ -4,15 +4,15 @@
     <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
   </head>
-  
+
   <body>
     <main>
       <% if @book.errors.any? %>
@@ -43,7 +43,7 @@
               <% @books.each do |book| %>
                 <tr>
                   <td>
-                    <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%>
+                    <%= attachment_image_tag book.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%>
                   </td>
                   <td>
                     <%= link_to book.title, book_path(book.id) %>
