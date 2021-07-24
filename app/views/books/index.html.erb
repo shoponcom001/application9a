@@ -53,6 +53,9 @@
                   <td>
                     <%= book.body %>
                   </td>
+                  <td>
+                    <%= link_to "#{book.book_comments.count}コメント", post_image_path(post_image.id) %>
+                  </td>
                 </tr>
                 <tr></tr>
               <% end %>
