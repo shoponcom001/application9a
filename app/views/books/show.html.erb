@@ -12,7 +12,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
   </head>
-  
+
   <body>
     <main>
       <p id="notice"></p>
@@ -31,7 +31,7 @@
                   <td>
                       <%= link_to user_path(@user) do %>
                         <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%> <br>
-                      <% end %>  
+                      <% end %>
                       <%= link_to @user.name, user_path(@user) %>
                   </td>
                   <td>
@@ -53,22 +53,23 @@
                 </tr>
               </tbody>
             </table>
-            
+
             <div class="comment">
-            <p>コメント件数:<%= @book.book_comments.count %></p>
-            <% @book.book_comments.each do |book_comment| %>
+            <p>コメント件数:<%= @book1.book_comments.count %></p>
+            <% @book1.book_comments.each do |book_comment| %>
               <%= attachment_image_tag @user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40"%>
               <%= book_comment.user.name %>
+              <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
             <% end %>
             </div>
-            
+
             <div class="new-comment">
               <%= form_with(model:[@book1, @book_comment], local: true) do |f| %>
-                <%= f.text_area :comment%>
+                <%= f.text_area :comment %>
                 <%= f.submit "送信" %>
               <% end %>
             </div>
-            
+
           </div>
       </div>
     </main>
@@ -83,4 +84,3 @@
     </footer>
   </body>
 </html>
-  
