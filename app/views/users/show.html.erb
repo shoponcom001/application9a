@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bookers</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/45e42e65d8.js" crossorigin="anonymous"></script>
-  </head>
   <body>
     <main>
       <div class="container px-5 px-sm-0">
@@ -20,6 +6,22 @@
 
             <%= render "users/user", user: @user %>
             <%= render "books/book", book: @book %>
+            
+            <% unless @user.id == current_user.id %>
+              <% if current_user.following?(@user) && @user.following?(current_user) %>
+              <% if @isRoom == true %>
+                <p class="user-show-room"><a href="/rooms/<%= @roomId %>" class="btn btn-primary btn-lg">チャットへ</a></p>
+              <% else %>
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
+                  <% end %>
+                  <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg user-show-chat" %>
+                <% end %>
+              <% end %>
+              <% end %>
+            <% end %>
+            
           </div>
         </div>
           <div class="col-md-8 offset-md-1">
@@ -70,4 +72,3 @@
       </div>
     </footer>
   </body>
-</html>
