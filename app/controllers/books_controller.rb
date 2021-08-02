@@ -26,7 +26,7 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
     @user = current_user
     @book = Book.new
     @book_comment = BookComment.new
@@ -36,6 +36,7 @@ class BooksController < ApplicationController
     @book = Book.new
     @book1 = Book.find(params[:id])
     @user = @book1.user
+    @book_comments = @book1.book_comments
     @book_comment = BookComment.new
   end
 
