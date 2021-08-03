@@ -4,9 +4,8 @@
         <div class="row">
           <div class="col-md-3">
 
-            <%= render "users/user", user: @user %>
-            <%= render "books/book", book: @book %>
-            
+            <%= render "users/user", user: @user %> <br>
+           
             <% unless @user.id == current_user.id %>
               <% if current_user.following?(@user) && @user.following?(current_user) %>
               <% if @isRoom == true %>
@@ -21,6 +20,8 @@
               <% end %>
               <% end %>
             <% end %>
+            
+             <%= render "books/book", book: @book %>
             
           </div>
         </div>
