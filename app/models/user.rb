@@ -48,6 +48,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   
+  is_impressionable counter_cache: true
+  
 
 
 end

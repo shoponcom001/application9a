@@ -14,7 +14,10 @@ class UsersController < ApplicationController
     @book = Book.new
     @users = User.all
     @set_relationship = current_user.relationships.new
+
     @user = User.find(params[:id])
+    impressionist(@user, nil)
+
     @currentUserEntry = Entry.where(user_id: current_user.id)
     @userEntry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
